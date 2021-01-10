@@ -20,6 +20,7 @@
 		<commons-codec.version>1.13</commons-codec.version>
 		<hikaricp.version>3.4.1</hikaricp.version>
 		<mariadb.version>2.5.2</mariadb.version>
+		<image.path>registry.hub.docker.com/youngstone89/springboot.base.app</image.path>
 	</properties>
 
 	<dependencies>
@@ -69,7 +70,6 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<defaultGoal>clean install</defaultGoal>
 		<directory>${basedir}/target</directory>
@@ -98,10 +98,13 @@
 				<version>2.7.0</version>
 				<configuration>
 					<to>
-						<image>springboot/base:${project.version}</image>     <!-- 1 -->
+					<!--Locally Store Image								 -->
+					<!--<image>springboot/base:${project.version}</image>-->
+						<image>${image.path}</image>
 					</to>
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
