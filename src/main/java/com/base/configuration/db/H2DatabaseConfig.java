@@ -1,13 +1,4 @@
-/**
- * MariaDatabaseConfig.java
- * 
- * @author hyunmyung.yun
- * @version 1.0 2017. 1. 25.
- *
- * Copyright (c) 2016 BESPIN GLOBAL. 
- * 36 Jangmi-ro, Bundang-gu, Seongnam-si Gyeonggi-do Korea , 13496 
- * All rights reserved.  
- */
+
 
 package com.base.configuration.db;
 

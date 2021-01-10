@@ -1,13 +1,4 @@
-/**
- * MariaDatabaseConfig.java
- * 
- * @author hyunmyung.yun
- * @version 1.0 2017. 1. 25.
- *
- * Copyright (c) 2016 BESPIN GLOBAL. 
- * 36 Jangmi-ro, Bundang-gu, Seongnam-si Gyeonggi-do Korea , 13496 
- * All rights reserved.  
- */
+
 
 package com.base.configuration.db;
 
@@ -28,13 +19,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-/**
- *  
- * {클래스 설명}.
- *
- * @author hyunmyung.yun
- * @version 1.0 2019. 7. 22.
- */
+
 @Configuration
 public class PrimaryDatabaseConfig {
 
