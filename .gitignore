@@ -1,0 +1,8 @@
+/.settings/
+/.classpath
+/.factorypath
+/.project
+/target/
+/.idea/
+/asset.gcp.collector.iml
+/data/

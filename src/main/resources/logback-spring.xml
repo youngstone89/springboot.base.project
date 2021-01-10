@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	
+	<property name="LOG_PATH" value="./data/deploy/logs" />
+	
+	<!-- <springProperty scope="context" name="springAppName" source="spring.application.name"/> -->
+
+	<!-- Appender to log to stdout -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %.-10p [%-5.100t] \(%class{0}.java:%L\) - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="dailyout" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/asset.gcp.collector.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/asset.gcp.collector.%d{yyyyMMdd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>UTF-8</charset>
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} %.-10p [%-5.100t] \(%class{0}.java:%L\) - %msg%n</pattern>
+			</layout>
+		</encoder>
+	</appender>
+
+	<springProfile name="local">
+		<property name="LOG_LEVEL" value="DEBUG" />
+		<property name="JDBC_LOG_LEVEL" value="DEBUG" />
+	</springProfile>
+
+	<springProfile name="dev">
+		<property name="LOG_LEVEL" value="INFO" />
+		<property name="JDBC_LOG_LEVEL" value="INFO" />
+	</springProfile>
+
+	<springProfile name="prod,china">
+		<property name="LOG_LEVEL" value="INFO" />
+		<property name="JDBC_LOG_LEVEL" value="ERROR" />
+	</springProfile>
+	
+	<!-- Query Loggers -->
+	<logger name="jdbc.sqltiming" level="${JDBC_LOG_LEVEL}" />
+
+	<!-- Application Loggers -->
+	<logger name="com.base" level="${LOG_LEVEL}" />
+
+	<logger name="com.base.configuration" level="info" additivity="false">
+		<appender-ref ref="stdout"/>
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="com.amazonaws.http.client.HttpClientFactory" level="${JDBC_LOG_LEVEL}" />
+
+	<root level="info">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="dailyout" />
+<!-- 
+		<springProfile name="dev">
+			<appender-ref ref="kibana" />
+		</springProfile>
+ -->
+	</root>
+</configuration>
