@@ -28,7 +28,7 @@ public class KafkaController {
     @PostMapping(value = "/sendMessage")
     public String sendMessageToKafkaTopic(@RequestBody JSONObject jsonObject) {
         kafkaService.sendMessage(jsonObject.toString());
-        return "OK!";
+        return "OK";
 
     }
 
